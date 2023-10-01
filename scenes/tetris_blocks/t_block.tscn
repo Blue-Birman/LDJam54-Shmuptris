@@ -6,9 +6,6 @@
 [node name="TBlock" instance=ExtResource("1_26te5")]
 script = ExtResource("2_7p456")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
-polygon = PackedVector2Array(-96, -32, 96, -32, 96, 32, 32, 32, 32, 96, -32, 96, -32, 32, -96, 32)
-
 [node name="BaseBlock1" parent="Blocks" index="0"]
 position = Vector2(-64, 0)
 

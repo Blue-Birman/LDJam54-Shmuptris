@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwlcch1xla6ni"]
+
+[ext_resource type="PackedScene" uid="uid://bbv7uekppl3fi" path="res://scenes/tetris_blocks/base_tetris_block.tscn" id="1_m28r4"]
+[ext_resource type="Script" path="res://scenes/tetris_blocks/s_block.gd" id="2_s7l5k"]
+
+[node name="SBlock" instance=ExtResource("1_m28r4")]
+script = ExtResource("2_s7l5k")

@@ -1,25 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq3rc0fyev4uu"]
+[gd_scene load_steps=3 format=3 uid="uid://cq3rc0fyev4uu"]
 
 [ext_resource type="Script" path="res://scenes/tetris_blocks/i_block.gd" id="1_ei5mk"]
 [ext_resource type="PackedScene" uid="uid://bbv7uekppl3fi" path="res://scenes/tetris_blocks/base_tetris_block.tscn" id="1_lqwb7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hkfvn"]
-size = Vector2(62, 256)
-
 [node name="IBlock" instance=ExtResource("1_lqwb7")]
 script = ExtResource("1_ei5mk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-shape = SubResource("RectangleShape2D_hkfvn")
-
 [node name="BaseBlock1" parent="Blocks" index="0"]
-position = Vector2(0, -96)
+position = Vector2(0, -128)
 
 [node name="BaseBlock2" parent="Blocks" index="1"]
-position = Vector2(0, -32)
-
-[node name="BaseBlock3" parent="Blocks" index="2"]
-position = Vector2(0, 32)
+position = Vector2(0, -64)
 
 [node name="BaseBlock4" parent="Blocks" index="3"]
-position = Vector2(0, 96)
+position = Vector2(0, 64)

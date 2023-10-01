@@ -7,7 +7,7 @@ var bullet_health_3 = preload("res://assets/images/CrackedBlock1.png")
 var bullet_health_2 = preload("res://assets/images/CrackedBlock2.png")
 var bullet_health_1 = preload("res://assets/images/CrackedBlock3.png")
 
-var grid_position = Vector2(0,0)
+@export var grid_position = Vector2(0,0)
 
 func activate_collisions():
 	set_collision_layer_value(3, true)

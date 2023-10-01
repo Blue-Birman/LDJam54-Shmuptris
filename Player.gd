@@ -15,7 +15,6 @@ func _process(delta):
 	$Gun.look_at(get_global_mouse_position())
 	
 	if Input.is_action_just_pressed("primary_action"): # and can_shoot:
-		print("shooting")
 		can_shoot = false
 		var pos = $Gun/Marker2D.global_position
 		var player_direction = (get_global_mouse_position() - position).normalized()
@@ -44,7 +43,6 @@ func _physics_process(delta):
 
 
 func _on_shoot_timer_timeout():
-	print("can shoot again")
 	can_shoot = true
 	
 	

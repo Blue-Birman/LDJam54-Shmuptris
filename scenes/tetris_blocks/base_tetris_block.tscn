@@ -3,9 +3,7 @@
 [ext_resource type="Script" path="res://scenes/tetris_blocks/base_tetris_block.gd" id="1_8qg63"]
 [ext_resource type="PackedScene" uid="uid://l54x2haaxaiq" path="res://scenes/tetris_blocks/base_block.tscn" id="2_j6o1e"]
 
-[node name="BaseTetrisBlock" type="Area2D"]
-collision_layer = 8
-collision_mask = 36
+[node name="BaseTetrisBlock" type="Node2D"]
 script = ExtResource("1_8qg63")
 
 [node name="Blocks" type="Node2D" parent="."]
@@ -17,5 +15,3 @@ script = ExtResource("1_8qg63")
 [node name="BaseBlock3" parent="Blocks" instance=ExtResource("2_j6o1e")]
 
 [node name="BaseBlock4" parent="Blocks" instance=ExtResource("2_j6o1e")]
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

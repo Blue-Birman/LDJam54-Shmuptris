@@ -1,10 +1,7 @@
 extends BaseTetromino
 
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	offset = Vector2(-32, -32)
-	for child in $Blocks.get_children():
-		child.get_child(1).modulate = Color(1, .5, 1)
+	blocks_start_position =  [Vector2.ZERO,Vector2.LEFT,Vector2.DOWN,Vector2.RIGHT]
+	block_tint = Color(1, .5, 1)
+	_on_ready()
 
