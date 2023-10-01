@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0qyni8o677h5"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_0l84i"]
+[ext_resource type="Texture2D" uid="uid://beox0f5davy32" path="res://icon.svg" id="2_a1kwr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4t8y"]
+size = Vector2(60, 60)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 54
+script = ExtResource("1_0l84i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u4t8y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_a1kwr")
+
+[node name="Gun" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.05)
+texture = ExtResource("2_a1kwr")
+
+[node name="Marker2D" type="Marker2D" parent="Gun"]
+position = Vector2(64, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Gun/Marker2D"]
+scale = Vector2(0.2, 1.5)
+texture = ExtResource("2_a1kwr")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

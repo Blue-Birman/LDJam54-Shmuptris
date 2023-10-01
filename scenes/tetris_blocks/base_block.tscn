@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://l54x2haaxaiq"]
+
+[ext_resource type="Script" path="res://scenes/tetris_blocks/base_block.gd" id="1_4bf8x"]
+[ext_resource type="Texture2D" uid="uid://cnhfbav3q487b" path="res://assets/images/BaseBlock.png" id="1_wb23e"]
+
+[node name="BaseBlock" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_4bf8x")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-31, -32, 31, -32, 32, -31, 32, 31, 31, 32, -31, 32, -32, 31, -32, -31)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_wb23e")
