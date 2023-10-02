@@ -7,6 +7,8 @@ var bullet_health_3 = preload("res://assets/images/CrackedBlock1.png")
 var bullet_health_2 = preload("res://assets/images/CrackedBlock2.png")
 var bullet_health_1 = preload("res://assets/images/CrackedBlock3.png")
 
+signal block_destroyed
+
 @export var grid_position = Vector2(0,0)
 
 func activate_collisions():
@@ -19,6 +21,9 @@ func activate_collisions():
 
 func hit():
 	health -= 1
+	render_hp()
+
+func render_hp():
 	match health:
 		4:
 			$Sprite2D.texture = bullet_health_4
@@ -29,7 +34,6 @@ func hit():
 		1:
 			$Sprite2D.texture = bullet_health_1
 	if health == 0:
+		block_destroyed.emit()
 		queue_free()
-
-	
 

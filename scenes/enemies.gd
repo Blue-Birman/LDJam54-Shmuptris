@@ -2,29 +2,22 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const FLY_VELOCITY = -10.0
+const FLY_VELOCITY = -100.0
 
-signal shoot(pos, direction)
+signal shoot(pos)
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 30
 var can_shoot = true
 var can_fly = true
 var change_moves = true
 
 var rng = RandomNumberGenerator.new()
 
-func _process(delta):
-	var gun_direction = Vector2.DOWN
-	$Gun.position = gun_direction * 40
-	$Gun.look_at(get_position_delta())
-	
-	if can_shoot: # and can_shoot:
-		print("shooting")
+func _process(delta):	
+	if can_shoot:
 		can_shoot = false
-		var pos = $Gun/Marker2D.global_position
-		var enemy_direction = get_position_delta()
 		$ShootTimer.start()
-		shoot.emit(pos, enemy_direction)
+		shoot.emit(global_position)
 
 func _physics_process(delta):
 	
@@ -35,7 +28,9 @@ func _physics_process(delta):
 	# Handle Fly.
 	if can_fly:
 		velocity.y = FLY_VELOCITY
-
+		can_fly = false
+		$FlyTimer.start(rng.randi_range(3, 7))
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if change_moves:
@@ -48,9 +43,12 @@ func _physics_process(delta):
 
 
 func _on_shoot_timer_timeout():
-	print("can shoot again")
 	can_shoot = true
 	
 
 func _on_move_timer_timeout():
 	change_moves = true
+
+
+func _on_fly_timer_timeout():
+	can_fly = true

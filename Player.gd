@@ -11,14 +11,14 @@ var can_shoot = true
 
 func _process(delta):
 	var gun_direction = (get_global_mouse_position() - global_position).normalized()
-	$Gun.position = gun_direction * 40
+	$Gun.position = gun_direction * 5
 	$Gun.look_at(get_global_mouse_position())
 	
-	if Input.is_action_just_pressed("primary_action"): # and can_shoot:
+	if Input.is_action_just_pressed("primary_action"): 
+		print("Shootingf")
 		can_shoot = false
 		var pos = $Gun/Marker2D.global_position
 		var player_direction = (get_global_mouse_position() - position).normalized()
-		$ShootTimer.start()
 		shoot.emit(pos, player_direction)
 
 func _physics_process(delta):
@@ -28,7 +28,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -40,9 +40,3 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-
-
-func _on_shoot_timer_timeout():
-	can_shoot = true
-	
-	

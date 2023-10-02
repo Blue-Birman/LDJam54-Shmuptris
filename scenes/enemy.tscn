@@ -1,40 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://ceg6o0tuepkuf"]
+[gd_scene load_steps=4 format=3 uid="uid://ceg6o0tuepkuf"]
 
-[ext_resource type="Texture2D" uid="uid://beox0f5davy32" path="res://icon.svg" id="2_7138p"]
+[ext_resource type="Script" path="res://scenes/enemies.gd" id="1_kd0nq"]
+[ext_resource type="Texture2D" uid="uid://drwius6hka4oc" path="res://assets/images/Enemy.png" id="2_fhj5q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4t8y"]
-size = Vector2(60, 60)
+size = Vector2(60, 44)
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(350, 242)
 collision_layer = 2
-collision_mask = 53
+collision_mask = 55
+script = ExtResource("1_kd0nq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -5)
 shape = SubResource("RectangleShape2D_u4t8y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_7138p")
-
-[node name="Gun" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.05)
-texture = ExtResource("2_7138p")
-
-[node name="Marker2D" type="Marker2D" parent="Gun"]
-position = Vector2(64, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Gun/Marker2D"]
-scale = Vector2(0.2, 1.5)
-texture = ExtResource("2_7138p")
+texture_filter = 1
+position = Vector2(0, 30)
+texture = ExtResource("2_fhj5q")
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
 [node name="MoveTimer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 
 [node name="FlyTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout" flags=18]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="FlyTimer" to="." method="_on_fly_timer_timeout"]
