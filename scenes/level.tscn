@@ -1,17 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://bq3bui05tm7q8"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_6d7qw"]
-[ext_resource type="Texture2D" uid="uid://beox0f5davy32" path="res://icon.svg" id="3_01g54"]
+[ext_resource type="Texture2D" uid="uid://0oer1pf7t6n1" path="res://assets/white.png" id="2_7nyv5"]
 [ext_resource type="PackedScene" uid="uid://c0qyni8o677h5" path="res://scenes/player.tscn" id="3_ts5u4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggc3p"]
-size = Vector2(1280, 128)
+[ext_resource type="PackedScene" uid="uid://ceg6o0tuepkuf" path="res://scenes/enemy.tscn" id="4_xhexe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_clnsx"]
 size = Vector2(128, 1280)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tg6ea"]
-size = Vector2(640, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggc3p"]
+size = Vector2(1280, 128)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_6d7qw")
@@ -38,8 +36,9 @@ collision_layer = 32
 collision_mask = 19
 
 [node name="Sprite2D2" type="Sprite2D" parent="LeftWall"]
-scale = Vector2(1, 10)
-texture = ExtResource("3_01g54")
+position = Vector2(1.5, 0)
+scale = Vector2(0.0748951, 1.50177)
+texture = ExtResource("2_7nyv5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
 shape = SubResource("RectangleShape2D_clnsx")
@@ -50,11 +49,25 @@ collision_layer = 32
 collision_mask = 19
 
 [node name="Sprite2D2" type="Sprite2D" parent="RightWall"]
-scale = Vector2(1, 10)
-texture = ExtResource("3_01g54")
+position = Vector2(-1.5, -0.500002)
+scale = Vector2(0.0772918, 1.50531)
+texture = ExtResource("2_7nyv5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 shape = SubResource("RectangleShape2D_clnsx")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(576, 704)
+collision_layer = 40
+collision_mask = 27
+
+[node name="Sprite2D2" type="Sprite2D" parent="Floor"]
+position = Vector2(4.00003, 3.49998)
+scale = Vector2(0.765728, 0.152302)
+texture = ExtResource("2_7nyv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_ggc3p")
 
 [node name="TetrisTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -65,17 +78,7 @@ position = Vector2(592, 592)
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1152, 544)
-zoom = Vector2(0.5, 0.5)
-
-[node name="DeathCeiling" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathCeiling"]
-position = Vector2(352, -32)
-shape = SubResource("RectangleShape2D_tg6ea")
+[node name="Enemy" parent="." instance=ExtResource("4_xhexe")]
 
 [connection signal="timeout" from="TetrisTimer" to="." method="_on_tetris_timer_timeout"]
 [connection signal="shoot" from="Player" to="." method="_on_player_shoot"]
