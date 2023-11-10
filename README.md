@@ -1,7 +1,7 @@
 # Shmuptris
 
 Our enttry for Ludum Dare 54. We combine shoot em ups and tetris. The tetris blocks create limited space for players to move. 
-Created by [Andreas Aditya](andreasaditya.com) and [Dave Septian Nugraha](https://www.linkedin.com/in/dave-septian-nugraha/)
+Created by [Andreas Aditya](https://andreasaditya.com) and [Dave Septian Nugraha](https://www.linkedin.com/in/dave-septian-nugraha/)
 
 ## How to Use
 
